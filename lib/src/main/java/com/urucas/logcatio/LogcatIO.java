@@ -34,6 +34,10 @@ public class LogcatIO {
         return instance;
     }
 
+    public boolean isVerbose() {
+        return VERBOSE;
+    }
+
     public static void Initialize(String namespace, boolean verbose) {
         LogcatIO logcatIO = getInstance();
         logcatIO.log("Logcat.io instance created");
