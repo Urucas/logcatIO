@@ -3,15 +3,11 @@ package com.urucas.logcatio;
 import android.os.Build;
 import android.util.Log;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by vruno on 1/12/16.
@@ -26,8 +22,6 @@ public class LogcatIO {
     private static LogcatIO instance;
     private boolean VERBOSE = false;
     private SocketConnection SOCKET;
-
-    private HashMap<String, String> map = new HashMap<>();
 
     private LogcatIO() {
         instance = this;
@@ -105,10 +99,6 @@ public class LogcatIO {
                 e.printStackTrace();
             }
         }
-    }
-
-    private boolean didAlreadyReadThatLine(String key) {
-        return map.get(key) != null ? true : false;
     }
 
     private void dumpLogs() {

@@ -37,7 +37,6 @@ public class SocketConnection {
     private class OnSocketDisconnected implements Emitter.Listener{
         @Override
         public void call(Object... args) {
-
         }
     }
 
