@@ -48,8 +48,8 @@ public class LogcatIO {
         logcatIO.MANUFACTURER = android.os.Build.MANUFACTURER;
         logcatIO.MODEL = android.os.Build.MODEL;
         logcatIO.SERIAL = android.os.Build.SERIAL;
-        logcatIO.createTimerTask();
         logcatIO.createSocketConnection();
+        logcatIO.createTimerTask();
     }
 
     private void createSocketConnection() {
