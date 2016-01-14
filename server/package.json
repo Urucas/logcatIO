@@ -13,10 +13,14 @@
     "type": "git",
     "url": "git+https://github.com/Urucas/logcatIO.git"
   },
+  "preferGlobal": true,
   "author": "Urucas <hello@urucas.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Urucas/logcatIO/issues"
+  },
+  "bin": {
+    "logcatio": "./bin/server"
   },
   "homepage": "https://github.com/Urucas/logcatIO#readme",
   "dependencies": {
