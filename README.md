@@ -10,6 +10,7 @@ Install & run the logcatIO server,
 $ npm install --g logcat.io
 $ logcatio
 ```
+<img src="https://raw.githubusercontent.com/Urucas/logcatIO/master/screen1.png" />
 
 Add the client library to your android app,
 ```gradle
@@ -26,7 +27,10 @@ dependencies {
 ```
 and initialize it,
 ```java
-LogcatIO.Initialize()
+// use the namespace given by the logcatIO server
+// or the url where you run the logcatIO server
+String namespace = "http://192.168.0.13:5000";
+LogcatIO.Initialize(namespace);
 ```
 
 Check the logcat in your browser!
