@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: Version
 
 android {
     compileSdkVersion 23
@@ -8,7 +9,7 @@ android {
         minSdkVersion 10
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0.0"
+        versionName "1.0.2"
     }
     buildTypes {
         release {
@@ -22,4 +23,15 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'io.socket:socket.io-client:0.6.2'
+    androidTestCompile 'junit:junit:4.12'
+}
+
+class Version implements Plugin<Project>{
+    public void apply(Project project) {
+        project.task("Version") {
+            project.gradle.projectsEvaluated {
+                println "$project.android.defaultConfig.versionName"
+            }
+        }
+    }
 }
