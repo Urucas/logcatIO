@@ -35,3 +35,4 @@ class Version implements Plugin<Project>{
         }
     }
 }
+// run ./gradlew -q Version
