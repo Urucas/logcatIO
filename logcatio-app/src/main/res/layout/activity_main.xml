@@ -9,4 +9,9 @@
         android:text="Log random stuff"
         android:id="@+id/logBtt"/>
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText" />
+
 </LinearLayout>
