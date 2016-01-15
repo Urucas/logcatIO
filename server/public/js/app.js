@@ -7,11 +7,11 @@ angular.module("LogcatIOApp", [])
   $scope.filter = {}
 
   $scope.shouldBeShown = function(log) {
-    var field = filter["field"] || false
+    var field = $scope.filter["field"] || false
     if(!field) return true
-    var q = filter["q"] || false
+    var q = $scope.filter["q"] || false
     if(!q) return true
-    return log[field] == q ? true : false
+    return log[field].indexOf(q) != -1 ? true : false
   }
 
   socket.on("greetings", function(card) {
