@@ -22,7 +22,7 @@ if [ -f $RELEASE_NAME ]; then
   rm $RELEASE_NAME 
 fi
 rm -rf ./build
-./gradlew aR
+./gradlew assembleRelease
 cp ./lib/build/outputs/aar/lib-release.aar $RELEASE_NAME
 POM=$(generate_pom $VERSION $TIMESTAMP)
 echo -n $POM >> maven-metadata.xml
