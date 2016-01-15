@@ -34,3 +34,6 @@ LogcatIO.Initialize(namespace);
 ```
 
 Check the logcat in your browser!
+
+<img src="https://raw.githubusercontent.com/Urucas/logcatIO/master/screen.png"
+/>
