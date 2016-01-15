@@ -90,7 +90,7 @@ public class LogcatIO {
 
     private void createTimerTask() {
         OnTimerTask task = getTimerTask();
-        new Timer(TAG_NAME, true).schedule(task, 0, 5000);
+        new Timer(TAG_NAME, true).schedule(task, 100, 5000);
     }
 
     private class OnTimerTask extends java.util.TimerTask {
