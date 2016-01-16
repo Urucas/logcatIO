@@ -26,5 +26,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     //compile project(':lib')
-    compile'com.urucas:logcatio:1.0.3@aar'
+    compile 'io.socket:socket.io-client:0.6.2'
+    compile 'com.urucas:logcatio:1.0.4@aar'
 }
