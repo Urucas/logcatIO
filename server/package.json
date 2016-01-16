@@ -1,6 +1,6 @@
 {
   "name": "logcatio",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A combination of Android Logcat & Socket.IO. Add the library to our app, check the logs in your browser.",
   "main": "./bin/server",
   "scripts": {
