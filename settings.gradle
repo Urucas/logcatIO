@@ -1,1 +1,1 @@
-include ':lib', ':logcatio-app'
+include ':logcatio', ':logcatio-app'
