@@ -29,8 +29,8 @@
   <form class="navbar-form navbar-left" role="search">
   <div class="form-group">
     <label class="control-label form-control">Filter</label>
-    <input type="text" class="form-control" placeholder="Search" ng-model="filter.q">
-    <select ng-model="filter.field" class="form-control">
+    <input type="text" name="q" class="form-control" placeholder="Search" ng-model="filter.q">
+    <select ng-model="filter.field" class="form-control" name="field">
       <option value="action">Action</option>
       <option value="brand">Brand</option>
       <option value="model">Model</option>
@@ -43,24 +43,24 @@
   <table class="table table-striped" cellpadding="0" cellspacing="0" width="90%">
     <thead>
       <tr>
-        <th>&nbsp;</th>
-        <th>Brand</th>
-        <th>Model</th>
-        <th>Manufacturer</th>
-        <th>SDK</th>
-        <th>Serial</th>
-        <th>Log</th>
+        <th class="title-action">Action</th>
+        <th class="title-brand">Brand</th>
+        <th class="title-model">Model</th>
+        <th class="title-manufacturer">Manufacturer</th>
+        <th class="title-sdk">SDK</th>
+        <th class="title-serial">Serial</th>
+        <th class="title-log">Log</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="log in logs" ng-show="shouldBeShown(log)">
-        <td>{{log.action}}</td>
-        <td>{{log.brand}}</td>
-        <td>{{log.model}}</td>
-        <td>{{log.manufacturer}}</td>
-        <td>{{log.sdk}}</td>
-        <td>{{log.serial}}</td>
-        <td>{{log.log}}</td>
+      <tr ng-repeat="log in logs" ng-show="shouldBeShown(log)" class="log-emit">
+        <td class="log-action">{{log.action}}</td>
+        <td class="log-brand">{{log.brand}}</td>
+        <td class="log-model">{{log.model}}</td>
+        <td class="log-manufacturer">{{log.manufacturer}}</td>
+        <td class="log-sdk">{{log.sdk}}</td>
+        <td class="log-serial">{{log.serial}}</td>
+        <td class="log-log">{{log.log}}</td>
       </tr>
     </tbody>
   </table>
