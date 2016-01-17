@@ -629,9 +629,24 @@ describe("Test logcatIO server", () => {
         }
       })
     driver
+      .findElement(By.className("clear-button"))
+      .click()
+    driver
+      .switchTo()
+      .alert()
+      .accept()
+    driver
       .findElement(By.name("q"))
-      .clear()
-      .then( () => {
+      .getAttribute("value")
+      .then( (val) => {
+        if(val != "")
+          err(val, "")
+      })
+    driver
+      .findElements(By.className('log-emit'))
+      .then( (els) => {
+        if(els.length >0)
+          err(els.length, 0)
         done()
       })
   })
