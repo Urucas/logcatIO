@@ -14,6 +14,13 @@ angular.module("LogcatIOApp", [])
     return log[field].indexOf(q) != -1 ? true : false
   }
 
+  $scope.clear = function() {
+    if(confirm("Are you sure you want to remove the logs?")) {
+      $scope.filter = {}
+      $scope.logs = []
+    }
+  }
+
   socket.on("greetings", function(card) {
     card["action"] = "connected"
     card["log"] = ""
