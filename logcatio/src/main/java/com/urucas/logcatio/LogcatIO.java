@@ -1,7 +1,11 @@
 package com.urucas.logcatio;
 
+import android.content.Context;
 import android.os.Build;
 import android.util.Log;
+
+import com.urucas.logcatio.exceptions.EmptyNamespaceException;
+import com.urucas.logcatio.exceptions.NullContextException;
 
 import org.json.JSONObject;
 
@@ -23,6 +27,8 @@ public class LogcatIO {
     private boolean VERBOSE = false;
     private SocketConnection SOCKET;
 
+    private long START = 200, EVERY = 5000;
+
     private LogcatIO() {
         instance = this;
     }
@@ -38,7 +44,19 @@ public class LogcatIO {
         return VERBOSE;
     }
 
-    public static void Initialize(String namespace, boolean verbose) {
+    public static void Initialize(Context context, String namespace, boolean verbose)
+            throws EmptyNamespaceException, NullContextException {
+
+        if(context == null)
+            throw new NullContextException();
+
+        if(namespace == null)
+            throw  new EmptyNamespaceException(context);
+
+        namespace = namespace.trim();
+        if(namespace.equalsIgnoreCase(""))
+            throw new EmptyNamespaceException(context);
+
         LogcatIO logcatIO = getInstance();
         logcatIO.log("Logcat.io instance created");
         logcatIO.VERBOSE = verbose;
@@ -60,8 +78,9 @@ public class LogcatIO {
         }
     }
 
-    public static void Initialize(String namespace) {
-        Initialize(namespace, false);
+    public static void Initialize(Context context, String namespace)
+            throws EmptyNamespaceException, NullContextException{
+        Initialize(context, namespace, false);
     }
 
     private void log(String msg) {
@@ -90,7 +109,7 @@ public class LogcatIO {
 
     private void createTimerTask() {
         OnTimerTask task = getTimerTask();
-        new Timer(TAG_NAME, true).schedule(task, 100, 5000);
+        new Timer(TAG_NAME, true).schedule(task, START, EVERY);
     }
 
     private class OnTimerTask extends java.util.TimerTask {
@@ -118,6 +137,18 @@ public class LogcatIO {
             }
 
         }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private static SocketConnection GetSocket() {
+        return LogcatIO.getInstance().SOCKET;
+    }
+
+    public static void Disconnect() {
+        try {
+            GetSocket().disconnect();
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }

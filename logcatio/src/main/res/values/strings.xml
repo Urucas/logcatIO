@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">logcatIO</string>
+    <string name="empty_namespace_exception">You must provide a non empty namespace for Initialize</string>
+    <string name="empty_namespace_exception_code">404</string>
 </resources>

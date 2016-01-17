@@ -62,4 +62,12 @@ public class SocketConnection {
             e.printStackTrace();
         }
     }
+
+    public void disconnect() {
+        try {
+            socket.disconnect();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 }
