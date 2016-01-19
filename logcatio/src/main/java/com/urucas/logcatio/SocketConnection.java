@@ -1,6 +1,11 @@
 package com.urucas.logcatio;
 
+import android.net.Uri;
+import android.util.Log;
+
 import org.json.JSONObject;
+
+import java.net.URISyntaxException;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -11,25 +16,23 @@ import io.socket.emitter.Emitter;
  */
 public class SocketConnection {
 
+    private static final String TAG_NAME = "SOCKET_CONNECTION";
     private Socket socket;
     private JSONObject jsonObject;
 
-    public SocketConnection(String namespace, JSONObject jsonObject) {
+    public SocketConnection(String namespace, JSONObject jsonObject) throws URISyntaxException {
         this.jsonObject = jsonObject;
-        try {
-            socket = IO.socket(namespace);
-            socket.on(Socket.EVENT_CONNECT, new OnSocketConnected());
-            socket.on(Socket.EVENT_DISCONNECT, new OnSocketDisconnected());
-            socket.on(Socket.EVENT_ERROR, new OnSocketError());
-            socket.connect();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        socket = IO.socket(namespace);
+        socket.on(Socket.EVENT_CONNECT, new OnSocketConnected());
+        socket.on(Socket.EVENT_DISCONNECT, new OnSocketDisconnected());
+        socket.on(Socket.EVENT_ERROR, new OnSocketError());
+        socket.connect();
     }
 
     private class OnSocketConnected implements Emitter.Listener{
         @Override
         public void call(Object... args) {
+            Log.i(TAG_NAME, "Socket connected");
             introduceYourself();
         }
     }
@@ -37,12 +40,14 @@ public class SocketConnection {
     private class OnSocketDisconnected implements Emitter.Listener{
         @Override
         public void call(Object... args) {
+            Log.i(TAG_NAME, "Socket disconnected");
         }
     }
 
     private class OnSocketError implements Emitter.Listener{
         @Override
         public void call(Object... args) {
+            Log.i(TAG_NAME, "Socket error");
         }
     }
 

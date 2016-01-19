@@ -7,6 +7,7 @@ import android.util.Log;
 import com.urucas.logcatio.exceptions.EmptyNamespaceException;
 import com.urucas.logcatio.exceptions.NullContextException;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -18,6 +19,7 @@ import java.util.Timer;
  */
 public class LogcatIO {
 
+    private static Timer TICTAC;
     private static String TAG_NAME = "LOGCAT.IO";
     private String NAMESPACE;
     private int SDK;
@@ -27,7 +29,7 @@ public class LogcatIO {
     private boolean VERBOSE = false;
     private SocketConnection SOCKET;
 
-    private long START = 200, EVERY = 5000;
+    private long START = 100, EVERY = 200;
 
     private LogcatIO() {
         instance = this;
@@ -40,11 +42,7 @@ public class LogcatIO {
         return instance;
     }
 
-    public boolean isVerbose() {
-        return VERBOSE;
-    }
-
-    public static void Initialize(Context context, String namespace, boolean verbose)
+    public static LogcatIO Initialize(Context context, String namespace, boolean verbose)
             throws EmptyNamespaceException, NullContextException {
 
         if(context == null)
@@ -58,16 +56,12 @@ public class LogcatIO {
             throw new EmptyNamespaceException(context);
 
         LogcatIO logcatIO = getInstance();
-        logcatIO.log("Logcat.io instance created");
         logcatIO.VERBOSE = verbose;
         logcatIO.NAMESPACE = namespace;
-        logcatIO.SDK = Build.VERSION.SDK_INT;
-        logcatIO.BRAND = Build.BRAND;
-        logcatIO.MANUFACTURER = android.os.Build.MANUFACTURER;
-        logcatIO.MODEL = android.os.Build.MODEL;
-        logcatIO.SERIAL = android.os.Build.SERIAL;
+        logcatIO.log("Logcat.io instance created");
         logcatIO.createSocketConnection();
         logcatIO.createTimerTask();
+        return getInstance();
     }
 
     private void createSocketConnection() {
@@ -78,9 +72,10 @@ public class LogcatIO {
         }
     }
 
-    public static void Initialize(Context context, String namespace)
+    public static LogcatIO Initialize(Context context, String namespace)
             throws EmptyNamespaceException, NullContextException{
-        Initialize(context, namespace, false);
+        Log.i(TAG_NAME, "initialize");
+        return Initialize(context, namespace, false);
     }
 
     private void log(String msg) {
@@ -89,14 +84,13 @@ public class LogcatIO {
             Log.i(TAG_NAME, msg);
     }
 
-    private JSONObject baseJSON() throws Exception{
-        LogcatIO instance = getInstance();
+    public static JSONObject baseJSON() throws JSONException {
         JSONObject json = new JSONObject();
-        json.put("brand", instance.BRAND);
-        json.put("model", instance.MODEL);
-        json.put("manufacturer", instance.MANUFACTURER);
-        json.put("sdk", instance.SDK);
-        json.put("serial", instance.SERIAL);
+        json.put("brand", Build.BRAND);
+        json.put("model", android.os.Build.MODEL);
+        json.put("manufacturer", android.os.Build.MANUFACTURER);
+        json.put("sdk", Build.VERSION.SDK_INT);
+        json.put("serial", android.os.Build.SERIAL);
         return json;
     }
 
@@ -109,7 +103,17 @@ public class LogcatIO {
 
     private void createTimerTask() {
         OnTimerTask task = getTimerTask();
-        new Timer(TAG_NAME, true).schedule(task, START, EVERY);
+        if(TICTAC == null) {
+            TICTAC = getTimer();
+            TICTAC.schedule(task, START, EVERY);
+        }
+    }
+
+    private Timer getTimer() {
+        if(TICTAC == null) {
+            TICTAC = new Timer(TAG_NAME, true);
+        }
+        return TICTAC;
     }
 
     private class OnTimerTask extends java.util.TimerTask {
@@ -151,5 +155,12 @@ public class LogcatIO {
         }catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        if(TASK != null) TASK.cancel();
+        if(SOCKET != null) SOCKET.disconnect();
     }
 }
