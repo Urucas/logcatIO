@@ -26,15 +26,19 @@ export default function server(port) {
   let namespace = [local_ip, port].join(":")
   
   io.on("connection", (socket) => {
+    console.log("connection")
     let _card = {};
     socket.on("greetings", (card) => {
+      console.log("greetings")
       _card = card
       io.emit("greetings", card)
     })
     socket.on("dump", (log) => {
+      console.log("dump")
       io.emit("dump", log)
     })
     socket.on("disconnect", () => {
+      console.log("disconnect")
       io.emit("goodbye", _card)
     })
   })

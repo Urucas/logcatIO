@@ -20,6 +20,7 @@ public class SocketConnection {
     private Socket socket;
     private JSONObject jsonObject;
 
+
     public SocketConnection(String namespace, JSONObject jsonObject) throws URISyntaxException {
         this.jsonObject = jsonObject;
         socket = IO.socket(namespace);

@@ -9,6 +9,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
 
+import java.net.URISyntaxException;
+
 /**
  * Created by vruno on 1/13/16.
  */
@@ -69,4 +71,15 @@ public class LogcatIOTests extends AndroidTestCase {
         assertEquals(jsonObject.has("serial"), true);
     }
 
+    @Test
+    public void testSocketConnection() throws JSONException, URISyntaxException, InterruptedException {
+        JSONObject jsonObject = LogcatIO.baseJSON();
+        String namespace = "http://192.168.0.11:5000";
+        SocketConnection socket = new SocketConnection(namespace, jsonObject);
+        Thread.sleep(2000);
+        socket.log("test log");
+        Thread.sleep(2000);
+        socket.disconnect();
+        Thread.sleep(2000);
+    }
 }
