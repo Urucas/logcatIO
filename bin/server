@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-var server = require('../dist/index.js')
-var port = process.env.PORT || "5000";
+import server from '../lib/index.js'
+let port = process.env.PORT || "5000";
 server(port);
