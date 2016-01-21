@@ -4,7 +4,7 @@
   "description": "A combination of Android Logcat & Socket.IO. Add the library to our app, check the logs in your browser.",
   "main": "./bin/server",
   "scripts": {
-    "build": "babel dist -d lib", 
+    "build": "babel lib -d dist",
     "prestart": "npm run build",
     "start": "./bin/server",
     "pretest": "npm start &",
@@ -26,7 +26,6 @@
   "homepage": "https://github.com/Urucas/logcatIO#readme",
   "dependencies": {
     "angular": "^1.4.8",
-    "babel-cli": "^6.4.5",
     "bootstrap": "^3.3.6",
     "express": "^4.13.3",
     "jquery": "^2.2.0",
@@ -34,6 +33,7 @@
     "socket.io": "^1.4.4"
   },
   "devDependencies": {
+    "babel-cli": "^6.4.5",
     "mocha": "^2.3.3"
   }
 }
