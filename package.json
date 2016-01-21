@@ -1,6 +1,6 @@
 {
   "name": "logcatio",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A combination of Android Logcat & Socket.IO. Add the library to our app, check the logs in your browser.",
   "main": "./node_modules/babel-cli/bin/babel-node.js bin/server",
   "scripts": {
