@@ -1,10 +1,11 @@
 {
   "name": "logcatio",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "A combination of Android Logcat & Socket.IO. Add the library to our app, check the logs in your browser.",
   "main": "./bin/server",
   "scripts": {
-    "build": "babel lib -d dist",
+    "build": "./node_modules/.bin/babel lib -d dist",
+    "install": "npm run build",
     "prestart": "npm run build",
     "start": "./bin/server",
     "pretest": "npm start &",
