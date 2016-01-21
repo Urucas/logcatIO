@@ -10,7 +10,7 @@ Install & run the logcatIO server,
 $ npm install --g logcat.io
 $ logcatio
 ```
-<img src="https://raw.githubusercontent.com/Urucas/logcatIO/master/screen1.png" />
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Urucas/logcatIO)
 
 Add the client library to your android app,
 ```gradle
