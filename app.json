@@ -1,0 +1,8 @@
+{
+  "name" : "LogcatIO",
+  "description" : "A combination of Android Logcat & Socket.IO. Add the library to our app, check the logs in your browser.",
+  "repository": "https://github.com/Urucas/logcatIO",
+  "keywords": [
+    "logcat", "android", "websockets", "socket.io", "debug"
+  ]
+}
