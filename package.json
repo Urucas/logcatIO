@@ -4,7 +4,7 @@
   "description": "A combination of Android Logcat & Socket.IO. Add the library to our app, check the logs in your browser.",
   "main": "./bin/server",
   "scripts": {
-    "build": "babel lib/ --out-dir dist/", 
+    "build": "babel dist -d lib", 
     "prestart": "npm run build",
     "start": "./bin/server",
     "pretest": "npm start &",
