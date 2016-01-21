@@ -1,3 +1,4 @@
 #!/usr/bin/env node
-var server = require('../dist/index.js');
-server(5000);
+var server = require('../dist/index.js')
+var port = process.env.PORT || "5000";
+server(port);
