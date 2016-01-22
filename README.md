@@ -31,8 +31,8 @@ and initialize it,
 ```java
 // use the namespace given by the logcatIO server
 // or the url where you run the logcatIO server
-String namespace = "http://192.168.0.13:5000";
-LogcatIO.Initialize(namespace);
+String namespace = "https://logcatio-server4.herokuapp.com";
+LogcatIO.Initialize(getApplicationContext(), namespace);
 ```
 
 Check the logcat in your browser!
