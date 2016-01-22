@@ -12,11 +12,12 @@ $ logcatio
 ```
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Urucas/logcatIO)
 
-Add the client library to your android app,
+
+Add the [client library](http://github.com/Urucas/logcatIO.lib/) to your android app,
 ```gradle
 repositories {
 // ...
- maven { url 'http://urucas.github.io/logcatIO/'}
+ maven { url 'http://urucas.github.io/logcatIO.lib/'}
 // ...
 }
 
