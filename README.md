@@ -24,7 +24,7 @@ repositories {
 dependencies {
     // ...
     compile 'io.socket:socket.io-client:0.6.2'
-    compile 'com.urucas:logcatio:1.0.4@aar'
+    compile 'com.urucas:logcatio:1.0.5@aar'
 }
 ```
 and initialize it,
