@@ -1,4 +1,4 @@
-var socket = io("http://localhost:5000");
+var socket = io(document.location.href);
 
 angular.module("LogcatIOApp", [])
 
